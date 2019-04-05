@@ -17,11 +17,11 @@ const initialState = fromJS({
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case 'SET_STATE': // khoi tao cac state ban dau cua reducer . viec nay se dc dispatch khi khoi tao store
+    case 'SET_STATE': 
      return state.merge(initialData)
 
     case 'TOGGLE_COMPLETE':
-      // thay doi trang thai cua item : active=> complete va nguoc lai.
+      
       return state.update('todos', function (list) {
         const item_id = list.findIndex((todo) => {
           return todo.get('id') === action.itemId;
@@ -40,13 +40,13 @@ export default function (state = initialState, action) {
 
     case 'CANCEL_EDITING':
       const index = state.get('todos').findIndex(todo => todo.get('id') === action.itemId)
-      const data = state.updateIn(["todos", index], item => item.set('editing', false))
-      console.log(data);
-      break;
-
+      return  state.updateIn(["todos", index], item => item.set('editing', false))
+    
     case 'DONE_EDITING':
-      const index_item = state.get('todos').findIndex(todo => todo.get('id') === action.itemId);
-      const item_update = state.get('todos').get(index_item).set('text', action.newText).set('editing', false);
+      const index_item = state.get('todos').findIndex(todo => todo.get('id') === action.itemId)
+      const item_update = state.get('todos').get(index_item)
+                                            .set('text', action.newText)
+                                            .set('editing', false);
       return state.update('todos', todos => todos.set(index_item, item_update))
 
     case 'CLEAR_COMPLETED':

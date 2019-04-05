@@ -4,7 +4,8 @@ import * as actionCreators from '../action_creators';
 import TodoList from './TodoList'
 import TodoHeader from './TodoHeader'
 import TodoTools from './TodoTools'
-import Test from './Test';
+
+
 export class TodoApp extends React.Component {
   getNbActiveItems() {
     if (this.props.todos) {
@@ -27,8 +28,7 @@ export class TodoApp extends React.Component {
           nbActiveItems={this.getNbActiveItems()}
           clearCompleted={this.props.clearCompleted} />
       </section>
-      <Test />
-    </div>
+      </div>
   }
 };
 
